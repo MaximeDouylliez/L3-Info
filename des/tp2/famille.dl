@@ -1,0 +1,28 @@
+persone(tom).
+persone(jack).
+persone(fred).
+persone(grace).
+persone(amy).
+persone(carolI).
+persone(carolII).
+persone(carolIII).
+persone(tony).
+
+pere(tom,amy).
+mere(jack,fred).
+pere(grace,amy).
+mere(amy,fred).
+pere(tony,carolII).
+mere(carolI,carolII).
+pere(fred,carolIII).
+mere(carolII,carolIII).
+
+parent(X,Y):- mere(X,Y).
+parent(X,Y):- pere(X,Y).
+
+ancetre(X,Y):- parent(X,Y).
+ancetre(X,Y):- parent(X,Z),ancetre(Z,Y).
+
+
+mg(X,Y):- persone(X), persone(Y), X=Y.
+mg(X,Y):- pere(X,Z),mere(Y,Z).

@@ -1,0 +1,93 @@
+set PROD;
+set BETE;
+set YEAR;
+
+param T>0;
+param rendement{PROD}>=0;
+param prix_vente{PROD}>=0;
+param vente_max{PROD}>=0;
+param surface_totale >=0;
+param hangar >=0;
+param tarif_location>=0;
+
+param valeur{BETE}>=0;
+param occupation_are{BETE}>=0;
+param capacite_hangar{BETE}>=0;
+
+param consommation{BETE,PROD}>=0;
+param subvention{BETE,YEAR}>=0;
+
+
+var surface_dedie {p in PROD}>=0;
+var qte_produite {p in PROD}=surface_dedie[p]*rendement[p];
+var qte_restante {p in PROD}>=0,<=vente_max[p];
+var qte {b in BETE}  >=0;
+var used {b in BETE} binary;
+var mult {b in BETE} >=0;
+var hangar_vide =hangar-(sum {b in BETE} mult[b]);
+var profit {y in YEAR}>=0
+
+
+maximize profit {y in YEAR}: 
+(sum{p in PROD} qte_restante[p]*prix_vente[p])+ (sum{b in BETE} valeur[b]*qte[b])+({b in BETE,Y in YEAR} qte[b]*subvention[b,y]) +(hangar_vide*tarif_location);
+
+subject to condi:
+(sum{b in BETE} used[b])=1;
+
+subject to surface_limité :
+(sum{p in PROD} surface_dedie[p])+(sum{b in BETE} qte[b]*occupation_are[b])<=surface_totale;
+
+
+subject to sustentation {p in PROD,b in BETE}:
+qte_produite[p] >=qte[b]*consommation[b,p]; 
+
+subject to vente {p in PROD,b in BETE}:
+qte_restante[p] <= qte_produite[p]-(qte[b]*consommation[b,p]);
+
+subject to surpop:
+hangar_vide<=hangar;
+
+subject to stock_animaux{b in BETE}:
+mult[b]*capacite_hangar[b]>=qte[b];
+
+subject to dual1 {b in BETE}:
+used[b]*hangar*capacite_hangar[b]>=qte[b];
+
+subject to dual2 {b in BETE}:
+used[b]<=qte[b];
+
+
+
+
+
+
+
+data;
+set BETE := vache mouton;
+set PROD := betterave blé mais;
+set YEAR := 2013 2014 2015 2016 2017;
+
+param surface_totale :=200;
+param hangar :=5;
+param tarif_location := 1500;
+
+param: valeur capacite_hangar occupation_are:=
+vache  200         20                 2
+mouton 150         29                 1;
+
+
+param consommation : betterave blé mais :=
+vache                    0.6  0.2  0.2 
+mouton                   0.8    1  0.3;
+                        
+
+param: rendement   vente_max prix_vente :=
+betterave 1            10      100    
+blé       0.6          20      120
+mais      0.5          20       90;
+
+
+param subvention: 2013 2014 2015 2016 2017 :=
+vache               450  280  170 500  220
+mouton              150  160  250 240  130;
+

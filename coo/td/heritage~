@@ -1,0 +1,67 @@
+classe abstraite.
+
+cargaison
+#distance :int
+#encombrementMax:int
+#encombrementCOurant:int
+#liste Marchandises COllection <Marchandise>
+
+ajouter(Marchandise M)
+cout() <<abstract>> :int
+#encMaj(Marchandise in) : int <<abstract>>
+
+Cargaison(dest: int , emax:int)
+
+
+
+fait heriter{
+
+emcombremntpoid
+
+#encmax(m)
+
+encombrementPoid(d,l)
+
+
+
+qui fait heriter
+
+fluviale
++cout
+-encmax int
+
+fluviale(d)
+
+
+et
+
+
+Routiere
++cout
++encmax:int
+
+routiere(d)
+}
+
+
+et
+
+emcombrementVolume
+#encmax(m)
+
+qui fait heriter
+Aerienne
++cout
+-encmax
+
+Aerienne(d)
+
+Qui fait heriter
+
+Aerienne urgente
++cout
+
+aerienne urgent()
+
+
+

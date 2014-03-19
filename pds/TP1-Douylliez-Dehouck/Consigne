@@ -1,0 +1,7 @@
+TP maccess
+
+    il s'agit des exercices 1 à 3 de la section Vérifier les droits d'accès... et expliquer de la feuille de TD/TP système de fichiers
+    à rendre avant votre 2e séance de TP
+    rendre une archive contenant exclusivement les fichiers suivants :
+        Readme, Makefile, prlimit.c, maccess.c, et session.txt
+

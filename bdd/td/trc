@@ -1,0 +1,4 @@
+tout les tuples tel qu'il existe un fournisseur f  tel que le nom du tuple soit egal au nom du fournisseur et pour tout catalogue c et pour tout article a:
+ c.fid = f.fid and a.aid = c.aid implique que a.acoul=vert;
+
+

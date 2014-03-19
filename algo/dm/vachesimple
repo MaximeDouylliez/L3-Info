@@ -1,0 +1,43 @@
+set PROD;
+set BETE;
+
+param rendement{PROD}>=0;
+param consomation{PROD}>=0;
+param prix_vente{PROD}>=0;
+param vente_max{PROD}>=0;
+param surface_totale>=0;
+
+
+
+var vache integer >=0;
+var surface_dedie {p in PROD}>=0;
+var qte_produite{p in PROD}=surface_dedie[p]*rendement[p];
+var qte_consome {p in PROD}=vache *consomation[p];
+var qte_restante {p in PROD}= (qte_produite[p]-qte_consome[p]);
+
+
+maximize profit :
+(sum{p in PROD} (qte_restante[p])*prix_vente[p])+(vache*200);
+
+subject to surface_limité :
+(sum{p in PROD} surface_dedie[p])+(vache*2)<=surface_totale;
+
+subject to vente_limite {p in PROD} : qte_restante[p]<=vente_max[p];
+
+subject to condi {p in PROD}:
+qte_produite[p] >=vache*consomation[p];
+
+
+data;
+
+set PROD := betterave blé maïs;
+param surface_totale :=200;
+param: rendement consomation vente_max prix_vente :=
+betterave 1          0.6        10     100    
+blé       0.6         0.2       20    120 
+maïs      0.5         0.2      20      90 ;
+
+
+
+
+

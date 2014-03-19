@@ -1,0 +1,15 @@
+relie(a,b).
+relie(b,c).
+relie(c,d).
+relie(d,a).
+relie(b,f).
+relie(f,g).
+relie(e,g).
+relie(d,e).
+relie(e,f).
+
+
+c2(X,Z):- relie(X,Y),relie(Y,Z).
+impair(X,Y):- relie(X,Y).
+impair(X,Y):- relie(X,Z),relie(Z,B),relie(B,Y).
+impair(X,Y):- relie(X,Z),relie(Z,D),relie(D,E),relie(E,B),relie(B,Y).

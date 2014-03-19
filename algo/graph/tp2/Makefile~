@@ -1,0 +1,12 @@
+executable: graphe.o  largeur.o longueur.o
+	gcc -o test graphe.o  largeur.o
+	gcc -o toto graphe.o longueur.o
+
+graphe.o: graphe.c graphe.h
+	gcc -c -Wall -g -std=c99 graphe.c
+
+largeur.o:largeur.c
+	gcc -c -Wall -g -std=c99 largeur.c
+
+longueur.o:longueur.c
+	gcc -c -Wall -g -std=c99 longueur.c

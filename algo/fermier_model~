@@ -1,0 +1,92 @@
+set PROD;
+set BETE;
+
+/* les lignes de parametres contenant PROD concernent les legumes, BETE concernent les betes, S/P... T signifie que les valeurs varient au cour des années */
+
+
+/*ici les parametres pour les années*/
+param S>=0; 
+param T>=0;
+param P>=0;
+
+/*ici les parametres généraux au probleme*/
+param valeur_subvention_swap_type_animal >=0;
+param surface_disponible >=0;
+param qte_hangar_dispo >=0;
+param tarif_location>=0;
+
+/* les 3 parametres suivants ont une valeur differente pour chaque légumes cultivé*/
+param rendement{PROD}>=0;
+param prix_vente{PROD}>=0;
+param vente_max{PROD}>=0;
+
+
+/* les 3 parametres suivants ont une valeur differente pour chaque type de betes élevée*/
+param valeur{BETE}>=0;
+param occupation_are{BETE}>=0;
+param capacite_hangar{BETE}>=0;
+
+/* les 2 parametres suivants sont reliés à deux éléments simultanément: les betes mangent differents légumes, les subventions varient en fonction de la bete et de l'année*/
+param consommation{BETE,PROD}>=0;
+param subvention{BETE,S..T}>=0;
+
+
+var surface_dedie {p in PROD,t in S..T}>=0;/*surface utilisé pour chaque type de légume/bete*/
+var qte_produite {p in PROD,t in S..T}=surface_dedie[p,t]*rendement[p];
+var qte_restante {p in PROD,S..T}>=0,<=vente_max[p];/*qte de legume vendue*/
+var qte {b in BETE,S..T} integer >=0;
+var used {b in BETE,S..T} binary;/* utilisé pour le ou exclusif*/
+var encombrement_hangar {b in BETE,S..T} integer>=0;/* nombre de hangar utilisé pour stocker les betes*/
+
+var hangar_vide{t in S..T} =qte_hangar_dispo-(sum {b in BETE} encombrement_hangar[b,t]);
+
+
+/* utilise les valeurs de ou exclusif pour savoir si le type de bete elevé a changé depuis l'année derniere*/
+/* l'ensemble d'années utilisé exclue la premiere année mais plus que de faire (S+1) qui est possible, on rajoute une variable pour permetre au gouvernement de donner des subventions qu'a partir d'une certaine année*/
+var bonus_swap_type_animal {t in P..T}=(sum {b in BETE} (used[b,t-1]*(used[b,t-1]-used[b,t])) * valeur_subvention_swap_type_animal);
+
+/*les legumes vendus + la valeur des betes en comptant les subventions+la location des hangars vide + la subvention de "diversité animale"*/
+maximize profit : 
+(sum{p in PROD,t in S..T} qte_restante[p,t]*prix_vente[p])+ (sum{b in BETE,t in S..T} (subvention[b,t]+valeur[b])*qte[b,t]) +(sum{t in S..T}hangar_vide[t]*tarif_location)+(sum{t in P..T} bonus_swap_type_animal[t]);
+
+
+
+/* les noms de contrainte sont suffisant pour comprendre*/
+subject to surface_limité {t in S..T}:
+(sum{p in PROD} surface_dedie[p,t])+(sum{b in BETE} qte[b,t]*occupation_are[b])<=surface_disponible;
+
+subject to le_temp_ne_recule_pas:
+S<=T;
+
+subject to Il_faut_bien_nourrir_les_betes {p in PROD,b in BETE,t in S..T}:
+qte_produite[p,t] >=qte[b,t]*consommation[b,p]; 
+
+subject to vente_legume {p in PROD,b in BETE,t in S..T }:
+qte_restante[p,t] <= qte_produite[p,t]-(qte[b,t]*consommation[b,p]);
+
+subject to Ne_pas_louer_plus_de_hangar_quon_ne_possede{t in S..T}:
+hangar_vide[t]<=qte_hangar_dispo;
+
+subject to calcul_nombre_hangar_louable{b in BETE,t in S..T}:
+encombrement_hangar[b,t]*capacite_hangar[b]>=qte[b,t];
+
+subject to Les_hangars_ne_sont_pas_extensibles {b in BETE,t in S..T}:
+used[b,t]*qte_hangar_dispo*capacite_hangar[b]>=qte[b,t];
+
+/* le nom de contrainte est trompeur, le modele accepte l'insertion de type de bete suplémentaire*/
+subject to Ou_exclusif_vache_ou_mouton_mais_pas_les_deux_partie1{t in S..T}:
+(sum{b in BETE} used[b,t])=1;
+
+subject to Ou_exclusif_vache_ou_mouton_mais_pas_les_deux_partie2 {b in BETE,t in S..T}:
+used[b,t]<=qte[b,t];
+
+
+
+
+
+
+
+
+
+
+

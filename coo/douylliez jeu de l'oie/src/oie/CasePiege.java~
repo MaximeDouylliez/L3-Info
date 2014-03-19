@@ -1,0 +1,37 @@
+/**
+ * @author Guillaume Catteaux Florian Laigle
+ */
+
+
+package oie;
+
+
+public class CasePiege extends CaseNormale {
+
+		
+		/**
+		 * Initialisation de la case piege
+		 */
+		public CasePiege(int index){
+			super(index);
+		}
+
+		
+		/**
+		 * peut il quitter
+		 */
+		public boolean canBeLeft(){
+			return false;	
+		}
+
+
+		
+		/**
+		 * message pour signifier a l utilisateur que le joueur est sur une case piege
+		 */
+		public String getMessage(){
+			return this.getPlayer().toString()+" is in cell "+this.index+", "+ this.getPlayer().toString()+" cannot play.";	
+		}
+
+
+}

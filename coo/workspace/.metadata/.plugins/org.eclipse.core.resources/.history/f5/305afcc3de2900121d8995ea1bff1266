@@ -1,0 +1,5 @@
+package piscine;
+
+public class ActionTermineException extends Exception{
+
+}

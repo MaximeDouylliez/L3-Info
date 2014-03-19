@@ -1,0 +1,40 @@
+legende
+ €=appartient
+E= E inversé
+A = pour tout
+
+
+requete 2
+t: E e € Employe,E v € Vols:
+t[enom]=e[enom]^ e[salaire]<v[prix] ^
+not E v2 € Vols:
+not v[prix]<v2[prix] v not v2[dep] = 'CDG' v not v2[arr] ='La Totounta'))
+
+requete 3
+t: ,E v € Vols, E c € Certifications,E a € Avions:
+t[dep]=v[dep] ^ t[arr]=v[arr] ^ not E e € Employe
+not e[eid]=c[eid] ^ not e[salaire]>100000 ^  not e[aid]=c[eid] ^ not c[aid]=a[aid]^ not a[portee]> v[distance]
+
+on considere que la vue pilote a été crée comme dans le sql
+
+
+requete4
+t: E p € pilote,E c € certifications:
+t[nom]=p[nom] ^ p[eid]=c[eid]^ not E a € avion:  c[aid]=a[aid] ^ a[distance]< 1500
+
+
+requete 5:
+t: E p € pilote,E c € certifications:
+t[nom]=p[nom] ^ p[eid]=c[eid]^ not E a € avion:  c[aid]=a[aid] ^ a[distance]< 1500
+^not E a2 € avion,E c2 € certifications: p[eid]=c2[eid]^ c2[aid]!=c[aid]^ c2[aid]=a2[aid] ^ a2[distance]< 1500^ not E a € avion,E c3 € certifications:p[eid]=c3[eid]^ c3[aid]!=c[aid] ^ c3[aid]!=c2[aid]^ c3[aid]=a3[aid] ^ a3[distance]< 1500
+
+requete 6
+t: E p € pilote,E c € certifications:
+t[nom]=p[nom] ^ p[eid]=c[eid]^ not E a € avion:  c[aid]=a[aid] ^ a[distance]< 1500 ^
+ E a2 € avions : 2a[aid]=a[aid] ^ a2[nom]='boeing%'
+
+
+requete 8
+t: E p € pilote,E c € certifications,E a € avion::
+t[nom]=p[nom] ^ p[eid]=c[eid]^  c[aid]=a[aid] ^ a[distance]>2000 ^
+ not E a2 € avions : 2a[aid]=a[aid] ^ a2[nom]='boeing%'

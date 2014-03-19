@@ -1,0 +1,31 @@
+
+/**
+ * @author Guillaume Catteaux Florian Laigle
+ */
+
+package oie;
+
+public class CaseOie extends CaseNormale {
+	
+	/**
+	 * initialisation de la case oie
+	 */
+	public CaseOie(int index){
+		super(index);
+	}
+	
+		
+	/**
+	 */
+	public int consequence(int d){
+		return super.consequence(2*d);
+	}
+	/**
+	 * Message signifiant a l utilisateur le saut que le joueur a fait, grace a la case oie
+	 */
+	public String getMessage(){
+		return this.getPlayer().toString()+" is in cell "+this.index+", "+ this.getPlayer().toString()
+			+" throws "+ this.diceGet() +", reaches goose "+super.consequence(this.diceGet()) + " and jumps to "+this.consequence(this.diceGet());
+	}
+
+}

@@ -1,0 +1,216 @@
+q--- Q1
+ couleursrares 
+---------------
+ argente
+ cyan
+ magenta
+ noir
+ opaque
+ superjaune
+(6 rows)
+
+--- Q2
+
+ aid 
+-----
+   1
+   3
+   8
+  11
+(4 rows)
+
+--- Q3
+
+aid 
+-----
+   1
+   4
+   5
+   7
+   8
+   9
+  11
+(7 rows)
+
+
+--- Q4
+
+ celuiquivendtout 
+------------------
+                1
+(1 row)
+
+
+
+--- Q5
+           anom            
+---------------------------
+ Left Handed Toaster Cover
+ Fire Hydrant Cap
+ Ferrari F430
+(3 rows)
+
+
+
+
+--- Q6
+           Article             |  Couleur   | Nombre de fournisseurs 
+--------------------------------+------------+------------------------
+ Fire Hydrant Cap               | rouge      |                      4
+ Anti-Gravity Turbine Generator | magenta    |                      2
+ Ferrari F430                   | rouge      |                      2
+ 7 Segment Display              | vert       |                      2
+ Acme Widget Washer             | argente    |                      2
+ Brake for Crop Circles Sticker | opaque     |                      2
+ Left Handed Toaster Cover      | rouge      |                      2
+ Microsd Card USB Reader        | superjaune |                      1
+ Acme Widget Washer             | rouge      |                      1
+ Anti-Gravity Turbine Generator | cyan       |                      1
+ Smoke Shifter End              | noir       |                      1
+ Microsd Card USB Reader        | vert       |                      1
+(12 rows)
+
+
+--- Q7
+couleur |    prixmoyen     
+---------+------------------
+ vert    | 27.1333322525024
+ rouge   |  21.235713822501
+(2 rows)
+
+
+
+--- Q8
+
+  fnom   
+---------
+ Autolux
+(1 row)
+
+
+--- Q9
+
+ aid 
+-----
+   1
+   4
+   5
+   7
+   8
+   9
+  11
+(7 rows)
+
+
+--- Q10
+
+ fid |   fnom    
+-----+-----------
+   1 | kiventout
+(1 row)
+
+
+
+--- Q11
+
+   fnom    |              anom              
+-----------+--------------------------------
+ kiventout | Acme Widget Washer
+ kiventout | Anti-Gravity Turbine Generator
+ kiventout | Microsd Card USB Reader
+(3 rows)
+
+
+--- Q12
+              anom              |  min   |  max   
+--------------------------------+--------+--------
+ 7 Segment Display              |      1 |   75.2
+ Acme Widget Washer             |   15.3 |   57.3
+ Anti-Gravity Turbine Generator |   0.55 | 124.23
+ Brake for Crop Circles Sticker |   20.5 |   22.2
+ Ferrari F430                   | 234543 | 234556
+ Fire Hydrant Cap               |   7.95 |   48.6
+ Left Handed Toaster Cover      |   16.5 |   36.1
+(7 rows)
+
+
+
+--- Q13
+
+ max 
+-----
+  12
+(1 row)
+
+
+
+--- Q14
+   fnom    
+-----------
+ kiventout
+(1 row)
+
+
+--- Q15
+
+          anom           
+-------------------------
+ Microsd Card USB Reader
+ Smoke Shifter End
+(2 rows)
+
+--- Q16
+
+ fid |   fnom   
+-----+----------
+   6 | Vendrien
+(1 row)
+
+
+--- Q17
+
+-- pour une reponse non-vide, il faut ajouter la ligne suivante a la base:
+
+--INSERT INTO Articles VALUES (13,'Ferari F430','superjaune');
+
+   acoul    
+------------
+ superjaune
+(1 row)
+
+
+--- Q18
+
+aid 
+-----
+   6
+  11
+(2 rows)
+
+
+
+--- Q19
+
+
+              anom              |   acoul    
+--------------------------------+------------
+ Smoke Shifter End              | noir
+ Acme Widget Washer             | rouge
+ Anti-Gravity Turbine Generator | cyan
+ Microsd Card USB Reader        | vert
+ Microsd Card USB Reader        | superjaune
+(5 rows)
+
+
+
+--- Q20
+
+-- ajouter pour Q20 (apres avoir termine la Q17) pour reponse non-vide
+--INSERT INTO Catalogue VALUES(6,13,234567);
+
+
+ aid 
+-----
+  13
+(1 row)
+

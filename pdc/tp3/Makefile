@@ -1,0 +1,19 @@
+qsint: qsint.o util.o qsint_tst.o qs.o qs_tst.o
+	gcc -o qsint util.o qsint.o qsint_tst.o 
+	gcc -o qs util.o qs.o qs_tst.o
+
+
+qsint_tst.o: qsint_tst.c
+	gcc -c -Wall qsint_tst.c
+
+qs_tst.o:qs_tst.c
+	gcc -c -Wall qs_tst.c
+
+qsint.o:qsint.c qsint.h
+	gcc -c -Wall qsint.c 
+
+qs.o:qs.c qs.h
+	gcc -c -Wall qs.c
+
+util.o:util.c util.h
+	gcc -c -Wall util.c

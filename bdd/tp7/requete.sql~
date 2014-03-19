@@ -1,0 +1,39 @@
+maximedouylliez
+
+
+drop view Participation cascade;
+drop view oldies;
+
+
+/*requete 1*/
+create view Participation(Artiste,Nbpart) as (select Acteur,count(*) from Interpretation group by acteur) union all (select Realisateur, count(*) from Spectacle group by realisateur);
+
+create view Participationtot (Artiste,Nbpart) as (select Artiste,sum(Nbpart) from Participation group by Artiste);
+
+select * from Participationtot where Nbpart in(select max(Nbpart) from Participation);
+
+
+/*requete 2*/
+update Spectacle set Type= 'chorale' where Cod in(select CodSpect from Interpretation where Protagoniste='true'group by CodSpect having count(*)>=10);
+
+
+/*requete 3*/
+select Acteur from Interpretation group by Acteur having count(*)>=10
+except select Acteur from Interpretation where Protagoniste ='true' group by Acteur;
+
+/*requete 4*/
+/*select Cod from Spectacle join Artiste on(Spectacle.Realisateur like Artiste.Nom) where Lieunaissance like 'france' intersect select CodSpect as Cod from Interpretation natural join Artiste where Lieunaissance like 'france'  group by CodSpect having count(*)>0;*/
+
+update Spectacle set Type ='National' where Cod in(select Cod from Spectacle join Artiste on(Spectacle.Realisateur like Artiste.Nom) where Lieunaissance like 'france' intersect select CodSpect as Cod from Interpretation natural join Artiste where Lieunaissance like 'france'  group by CodSpect having count(*)>0);
+
+
+/*requete 5*/
+create view oldies as select * from Spectacle where Type like 'film' and An<'2000-01-01' and An>='1990-01-01';
+
+select Realisateur from oldies  union select Acteur from Interpretation where CodSpect in(select Cod from oldies); 
+
+/*requete 6*/
+create view inter(lien,persone) as select Cod,Acteur from Interpretation union select CodSpect,Realisateur from Spectacle;
+
+create view inter2 as select persone from inter where lien =any( select lien from inter select where persone = any( s.persone from inter s where lien=any(select lien from Inter where personne =xxx)))
+

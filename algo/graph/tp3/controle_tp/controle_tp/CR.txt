@@ -1,0 +1,84 @@
+
+
+NOM :douylliez
+Prénom :maxime
+Nom de la machine :machine personelle
+
+==============================================
+= Avant de commencer à programmer
+==============================================
+
+
+Q1) Fait : OUI
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+
+==============================================
+= Tri topologique
+==============================================
+
+Q2) Fait : OUI
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+Q3) Fait : OUI
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+Q4) Fait : OUI
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+Q5) Fait : NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+le tri topologique ne fonctionne pas completement . il donne 5 avant 4 et pas l'inverse, 8 avant 7 et pas l'inverse !
+
+
+Donnez la sortie écran de l'exécution de chacune des commandes :
+./path_count exemple_tp.grp 0
+
+./path_count exemple_tp.grp 1
+
+
+==============================================
+= Test d'acyclicité
+==============================================
+
+
+Q6) Fait : OUI/NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+
+Q7) Fait : OUI/NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+Donnez la sortie écran de l'exécution de chacune des commandes :
+./path_count cycle.grp 0
+
+./path_count petersen.grp 0
+
+
+==============================================
+= Comptage de chemins
+==============================================
+
+Q8) Fait : OUI/NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+
+Q9) Fait : OUI/NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+Donnez la sortie écran de l'exécution pour tous les fichiers de graphe
+(sauf cycle.grp)
+
+
+==============================================
+= Enumération de chemins
+==============================================
+
+Q10) Fait : OUI/NON
+Expliquez les difficultés rencontrées si vous n'y arrivez pas
+
+
+Donnez la sortie écran de l'exécution pour tous les fichiers de graphe
+(sauf cycle.grp)
+

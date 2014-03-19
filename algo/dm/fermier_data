@@ -1,0 +1,38 @@
+
+data;
+/* on définit ici les betes et les legumes. si l'on rajoute des betes/legumes, il ne faut pas oublier de rajouter les parametres associé dans les tableaux plus bas !*/
+set BETE := vache mouton;
+set PROD := betterave blé mais;
+
+/* def des parametres globaux */
+param surface_disponible :=200;
+param qte_hangar_dispo :=5;
+param tarif_location := 1500;
+param valeur_subvention_swap_type_animal :=5000;
+
+param T:=2017;/* Fin de la simulation */
+param S:=2013;/* Debut de la simulation */
+param P:=2014;/* Année incluse a partir de laquelle les fermier peuvent gagner un bonus de diversité animale */
+
+/*concerne les betes*/
+param: valeur capacite_hangar occupation_are:=
+vache  200         20                 2
+mouton 150         29                 1;
+
+/*concerne les legumes*/
+param: rendement   vente_max prix_vente :=
+betterave 1            10      100    
+blé       0.6          20      120
+mais      0.5          20       90;
+
+
+/*croisement entre legume et bete*/
+param consommation : betterave blé mais :=
+vache                    0.6  0.2  0.2 
+mouton                   0.8    0.1  0.3;
+                        
+/*croisement entre bete et temps*/
+param subvention: 2013 2014 2015 2016 2017 :=
+vache               450  280  170 500  220
+mouton              150  160  250 240  130;
+

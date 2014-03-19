@@ -1,0 +1,3 @@
+l'exercice sur les semaines et les fruits/legumes est fait. celui sur les arcenciel n'est pas fait. celui sur les rammasseurs n'est pas terminé.
+
+q1: la ligne de code décommenté provoque un conflit de type en renvoyant un objet de type "Pomme" alors qu'elle envois une liste de carrote dans chose. le compilateur dit que le <E> est identique en entrée et en sortie

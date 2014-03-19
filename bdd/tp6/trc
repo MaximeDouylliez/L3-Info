@@ -1,0 +1,70 @@
+t: EE v E vols
+t[dep]=v[dev]and  t[arr] = v[arr] and 
+pour tout e E employés:
+e[salaire]>100 000 and  
+EE c E certifications:
+ e [eid]=c[eid]
+ implique EE a Avions,EE c2 E certifications:
+a[aid]=c2[aid] and c2[eid]=e[eid] and a [portee]>=v[istance]
+
+faut reduire en EE et (and)
+
+
+les pour tou -> not EE et not tout ce qu'il y aprés
+
+
+1t:E e € employé
+t[nom]=e[nom]
+
+2t:E e1 € employé,E e2 € certification(t[nom]=e1[enom] ^ e1 [eid]= e2[eid]
+
+3tE e1 € employé,
+E e2 € certification( t[nom]=e1[enom] ^ e1[eid] != e2[eid]
+
+4{t:E e1 € employé,
+E e2 € certification,
+E e3€ avions(
+t[nom]=e1[enom]^
+e1[eid]= e2[eid]^
+e2[aid]=e3[aid]^
+e3[anom]='airbus%')}
+
+5t: E e1 €  Avions,
+E e2 € Vols(
+t[nom]=e1[anom]^
+a1[porte]>= a2[distance]^
+a2[dep]='CDG'^a2[arr]='NOV')}
+
+6t: E v € vols,
+E v1 € vol(
+t[vid]=v[vid]^
+t[prix]=v[prix]^
+v1[prix]<v[prix]^
+v[dep]='cdg'^
+v[arr]='nov'^
+v1[dep]='cdg'^
+v1[arr]='nov')}
+
+7t: E e € employé,
+not E v € vols,
+E c € certification(
+t[nom]=e[enom]^
+e[eid]=c[eid]^
+v[prix]<c[salaire]^
+v[dep]='cdg'^
+v[arr]='nov')}
+
+8t:E e € employé, E c € certifications, E a € Avions,not E c1€ Certificaiton,not E a1 € avions(
+t[eid]=e[eid]^
+t[nom]=e[nom]^
+t[portee]=a[portee]^
+c[eid]=e[eid]^
+c[aid]=a[aid]^
+e[eid]=c1[eid]^
+c1[aid]=a1[aid]^
+a1[portee]>a[portee]=)}
+
+
+
+
+

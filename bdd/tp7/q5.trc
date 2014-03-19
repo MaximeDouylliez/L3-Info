@@ -1,0 +1,6 @@
+maxime douylliez
+
+
+t: E a € Artiste, E s € Spectacle, E i € Interpretation  
+
+(t[nom] = i[Acteur] ^ i[acteur]=a[nom]) v (t[nom]=s[Realisateur]^ s[realisateur]=a[nom]) ^ i[CodSpect]=s[Cod] ^ S[an]<'2000-01-01'  ^s[an]>='1990-01-01'

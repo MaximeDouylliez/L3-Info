@@ -1,0 +1,21 @@
+Q1:
+l'affiche 2: si elle ment nous dis qu'il n'y a, ni princesse ni tigre dans aucune des deux cellules ce qui est impossible. L'affiche 2 dit donc la vérité. L'affiche 1 ment dans cette configuration. 
+
+Il y a donc un tigre dans la premiere cellule et une princesse dans la seconde.
+
+
+
+
+
+Q2
+ AF1 (c1(princesse)->c2(tigre) v c1(tigre)->c2(princesse)) 
+^(
+ AF2 (c1(princesse) ^ (c2(tigre)) v (c1(tigre) ^ c2(princesse)) 
+)
+
+
+Q3
+AF1^AF2 (NOT(AF1)^(NOT(AF2))
+
+Q4
+

@@ -1,0 +1,68 @@
+douylliez maxime
+
+q4
+mia=femme
+yolande=femme
+lapin=femme
+
+
+q5
+femme(X)
+
+
+q6
+femme(X),aime(vincent,X)
+
+
+q7
+on ne peut pas. Il faut créer un groupe homme
+
+
+q8
+jaloux(vincent,X)
+
+q9
+jaloux(vincent,answer)
+
+
+q11
+DES> c2(X,Y)
+
+{                                           
+  c2(a,c),
+  c2(a,f),
+  c2(b,g),
+  c2(d,b),
+  c2(d,f),
+  c2(d,g),
+  c2(e,g)
+}
+Info: 7 tuples computed. 
+
+q12
+
+DES> c2(X,Y)
+
+{                                           
+  c2(a,c),
+  c2(a,f),
+  c2(b,d),
+  c2(b,g),
+  c2(c,a),
+  c2(c,e),
+  c2(d,b),
+  c2(d,f),
+  c2(d,g),
+  c2(e,g)
+}
+Info: 10 tuples computed.          
+
+DES> 
+
+q15
+B=bull,employe(X,_,_,_,B,_)
+
+q16
+q17
+q18
+q19

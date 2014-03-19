@@ -1,0 +1,5 @@
+La q2 parle de l'influence des valeurs de vente max sur l'objectif. Seule la valeurs de vente max des betteraves compte car la culture de betteraves est plus rentables que l'elevage des vaches mais la limitation de vente fait de la vache la meilleure source de profit.
+
+
+lancer ampl: ampl dans le dossier des fichier.
+faire reset entre deux execution pui model le nom du fichier

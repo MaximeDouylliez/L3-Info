@@ -1,0 +1,5 @@
+Il manque des gestions de cas pour les parentheses et les accolades, notament lorsque l'accolade est à l'interieur d'une chaine de caractere.
+
+On peut également noter l'impossibilité de faire un division car le signe '/' sera mal intérprété.
+
+Le sujet précisait entrée standard mais la gestion et le code en lui même aurait été plus simple si l'on avait pu lire plusieurs fois de suite en entier le fichier et écrire plusieurs fonction traitant séparement. 

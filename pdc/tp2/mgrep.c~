@@ -1,0 +1,60 @@
+#include "util.h"
+
+
+
+int
+mgrep
+(char* mot)
+{
+
+  int lgmot,lgphrase,curseur,nbvalidline;
+  char* ligne_buffer;
+
+  fatal((lgmot=strlen(mot))>0,"Longueur de mot incorecte",2);
+  ligne_buffer=malloc((MAX_LINE+1) *sizeof(int));
+  nbvalidline=0;
+
+  while(readl(ligne_buffer)!=EOF)//tant qu'il y a des lignes
+    {
+ 
+      lgphrase=strlen(ligne_buffer);
+      /*   printf("test de la ligne %s ",ligne_buffer);
+	   printf(" longueur= %d\n",lgphrase);*/
+      for(curseur=0;curseur<lgphrase; curseur++)//tant que le curseur n'est pas a la fin de ligne
+	{
+	  if(!(lgmot<=(lgphrase-(curseur))));//tant que la longueur restante a analyser n'est pas  au moins egale a la longueur du mot
+	  else
+	    {
+	      //printf("passance dans strcmp\n");
+	      if((strstr(ligne_buffer,mot))!=NULL)//si le mot est contenu
+		{
+		  printf("%s\n",ligne_buffer);
+		  nbvalidline++;
+		  curseur=lgphrase;
+		}
+	    }
+	}
+      ligne_buffer=malloc((MAX_LINE+1) *sizeof(int));
+    }
+  return nbvalidline;
+}
+	    
+
+
+   
+	
+
+
+
+
+int
+main
+(int argc, char** argv)
+{
+  fatal(argc==2,"Nb Arguments invalide",2);
+  /* printf("test\n");
+     print_arg(argc,argv);*/
+    fatal((mgrep(argv[1]))>0,"Aucune ligne valable",2);
+
+  return 0;
+}

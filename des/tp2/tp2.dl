@@ -1,0 +1,13 @@
+contenu(tigre).
+contenu(princesse).
+
+affiche_1(princesse,tigre).
+affiche_2(X,Y):-contenu(X),contenu(Y),X\=Y.
+
+
+
+solution(X,Y) :- contenu(X),contenu(Y),
+			  affiche_1(X,Y),not(affiche_2(X,Y)).
+
+alt_solution(X,Y) :- contenu(X),contenu(Y),
+			  not(affiche_1(X,Y)),affiche_2(X,Y).

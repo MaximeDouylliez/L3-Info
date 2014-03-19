@@ -1,0 +1,35 @@
+/* maxime douylliez*/
+
+drop view pilote;
+
+create view pilote as select * from employes where eid=any(select eid from Certifications);
+
+/*requete: 1*/
+select eid,max(portee) from certifications natural join Avions group by eid having count(*) >1 ;
+
+/*requete: 2*/
+select enom from pilote where salaire<(select prix from vols where dep like'CDG' and arr like 'NOU' order by prix desc limit 1);
+
+/*requete: 3*/
+
+select dep,arr,distance from vols where distance<(select min(caca) from(select max(portee)as caca from avions natural join certifications natural join (select * from pilote where salaire>100000) as bloba  group by eid)as blobo);
+/*requete: 4*/
+
+select enom from pilote natural join certifications natural join avions group by enom having min(portee)>1500;
+/*requete: 5*/
+
+select enom,min(portee) from pilote natural join certifications natural join avions group by enom having count(*)>=3 and min(portee)>1500;/* pas d'accord avec les resultats de la prof*/
+/*requete: 6*/
+select enom from pilote natural join certifications natural join avions group by enom having min(portee)>1500 and count(anom like 'Boeing%')>=1;
+/*pas d'accord avec la prof*/
+/*requete: 7*/
+select eid,enom from (select eid,enom,salaire from employes  order by salaire desc limit 2) as riche order by salaire asc limit 1;
+
+/*requete: 8*/
+select enom,eid from pilote natural join certifications natural join avions where portee>'2000' except (select enom,eid from pilote natural join certifications natural join avions where anom like 'Boeing%');
+
+/*requete: 9*/
+select enom,salaire from(select *from employes except select * from pilote)as emp where salaire>(select avg(salaire) as moyen from pilote);
+
+/*requete: 10*/
+select avg (p.salaire)-avg(e.salaire) as Difference from employes e , pilote p;

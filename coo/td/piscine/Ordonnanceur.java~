@@ -1,0 +1,8 @@
+public abstract class Ordonnanceur extends Action{
+
+    protected List<Action> lesActions=new ArrayList<Action>();
+
+    public void add(Action a){
+	this.lesActions.add(a);
+    }
+}

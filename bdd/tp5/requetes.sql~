@@ -1,0 +1,76 @@
+/*Maxime douylliez tp5*/
+
+/*requete1:*/
+select acoul  as coulrare from Articles group by acoul having count(acoul)=1;
+select a.acoul as coulrare from Articles a where not exists(select acoul from Articles where acoul=a.acoul group by acoul having count(*)!=1);
+
+/*requete2:*/
+select aid as redNotGreen from Articles where acoul='rouge' EXCEPT select aid from Articles where acoul='vert';
+select a.aid as redNotGreen from Articles a where acoul='rouge' and not exists (select aid from Articles where aid=a.aid and acoul='vert');
+
+/*requete3:*/
+select aid as deuxFournMin from Articles natural join Catalogue group by aid having count(aid)>1;
+select a.aid as deuxFournMin from Articles a where exists (select aid from Catalogue where aid=a.aid group by aid having max(fid)!=min(fid) );
+
+/*requete4:*/
+select fid  as celuiquivendtout from Catalogue group by fid having count(*) =(select count(*) from Articles);
+select c.fid  as celuiquivendtout from Catalogue c  natural join Articles group by fid having not exists(select aid from Articles where aid!=all(select aid from Catalogue where fid=c.fid));
+
+/*requete5:*/
+select anom as redOnly from Articles where acoul='rouge' EXCEPT select anom from Articles where acoul!='rouge';
+select a.anom as redOnly from Articles a where acoul='rouge' and not exists(select anom from Articles where anom=a.anom and acoul!='rouge');
+
+/*requette6:*/
+select anom,acoul,count(*) as nbFournisseur From Articles natural join Catalogue group by anom,acoul order by nbFournisseur;
+
+/*requette7:*/
+select acoul,SUM(prix)/count(*)as PrixMoyen from (select * from Catalogue except select * from Catalogue where aid=(select aid from Articles where anom='Ferrari F430')) as goal natural join Articles group by acoul having max(aid)!=min(aid) ;
+
+/*requete8:*/
+select fnom as cher from Fournisseurs natural join Catalogue order by  prix desc limit 1;
+select f.fnom as cher from Fournisseurs f natural join Catalogue where not exists(select fnom from Catalogue natural join Fournisseurs where f.fnom like fnom group by fnom having max(prix) <(select max(prix) from Catalogue natural join Fournisseurs where f.fnom not like fnom));
+
+/*requete9:*/
+select aid as deuxFournMinEncore from Catalogue natural join Fournisseurs group by aid having count(*)>1 order by aid asc;
+select a.aid as deuxFournMinEncore from Articles a where exists (select aid from Catalogue where aid=a.aid group by aid having max(fid)!=min(fid) )order by aid asc;
+
+/*requete10:*/
+select fid from Articles natural join Catalogue group by fid,acoul having count(acoul='rouge')=(select count(*) from Articles where acoul = 'rouge');
+select f.fnom from fournisseurs f where not exists ( select * from articles a where a.aid != all(select aid from catalogue c where c.fid = f.fid) and a.acoul = 'rouge')
+/*requete11:*/
+select fid,anom from Articles natural join Catalogue group by fid,anom having count(*)>1;
+select distinct f.fnom, a1.anom 
+from fournisseurs f join catalogue c1 on (f.fid = c1.fid) join articles a1 on (c1.aid = a1.aid)
+where exists (	select * from articles a2 natural join catalogue c2 where a1.anom = a2.anom and c2.fid = f.fid and a1.acoul != a2.acoul)
+
+/*requete12:*/
+select anom,max(prix),min(prix) from Articles natural join Catalogue  group by aid having count(*)>1;
+
+/*requete13:*/
+select count(*) as Nombre_Article from Articles natural join Catalogue group by fid order by count(*) desc limit 1;
+
+
+/*requete14:*/
+select fnom from Fournisseurs natural join Catalogue group by fnom having count(*)=(select count(*) as Nombre_Article from Articles natural join Catalogue group by fid order by count(*) desc limit 1);
+
+/*requete15:*/
+select anom from Catalogue natural join Articles group by anom having max(fid)=min(fid);
+
+/*requete16:*/
+select fnom from (select fid from Fournisseurs except select fid from Catalogue) as foo natural join Fournisseurs;
+
+
+/*requete17:*/
+select acoul from (select aid from Articles except select aid from Catalogue)as fo natural join Articles;
+
+
+/*requete18:*/
+select aid from Catalogue where prix>100 EXCEPT select aid from Catalogue where prix<100;
+
+
+/*requete19:*/
+select anom from(select aid from Catalogue natural join Fournisseurs where fnom ='kiventout' except select aid from Catalogue natural join Fournisseurs where fnom!='kiventout')as f natural join Articles;
+
+
+/*requete20:*/
+select aid from Catalogue natural join Fournisseurs where fad like '%USA' except Select aid from Catalogue natural join Fournisseurs where fad  not like '%USA';

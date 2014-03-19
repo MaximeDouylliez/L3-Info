@@ -1,0 +1,3 @@
+package piscine;
+
+public class enum EtatAction {NON_TERMINE,TERMINE};

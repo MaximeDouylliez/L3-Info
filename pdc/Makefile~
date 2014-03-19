@@ -1,0 +1,7 @@
+OBJECT= -Wall
+
+conversion: pp2.o
+	gcc -o conversion pp2.o
+
+pp2.o: pp2.c
+	gcc -c ($OBJECT) pp2.c

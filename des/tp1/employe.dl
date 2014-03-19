@@ -1,0 +1,9 @@
+employe(jean,23,homme,200,ibm,1).
+employe(jacque,32,h,omme,1991,bull,4).
+employe(anne,45,femme,1993,bull,3).
+
+salaire(ibm,2000,3000,4500,5500,7500).
+salaire(bull,1600,3000,4500,6000,7500).
+
+
+

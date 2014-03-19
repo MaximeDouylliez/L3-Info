@@ -1,0 +1,25 @@
+
+
+
+
+CC = gcc
+CFLAGS = -Wall -ansi -pedantic -g -D_XOPEN_SOURCE=500
+
+EXEC = forkfork
+
+all : $(EXEC)
+
+Y : forkfork.o
+	$(CC) -o forkfork forkfork.o
+
+forkfork.o : forkfork.c
+	$(CC) -c $(CFLAGS) forkfork.c
+
+
+.PHONY : clean mrproper
+
+clean :
+	rm -f *.o
+
+mrproper :
+	rm $(EXEC)

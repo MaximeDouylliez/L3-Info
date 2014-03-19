@@ -1,0 +1,104 @@
+/**
+ * @author Guillaume Catteaux Florian Laigle
+ */
+
+package oie;
+
+public class CaseNormale implements Cell {
+	/**
+	 * Une case se compose donc d un joueur, d un index, et d un des
+	 */
+	protected Player player;
+	
+	protected int index;
+	
+	protected int dice;
+
+	/**
+	 * Constructeur de la case normale
+	 */
+	public CaseNormale(int index){
+		this.index = index;
+		this.player = null;
+	}
+	
+	@Override
+	/**
+	 * Le joueur peut-il quitter cette case
+	 */
+	public boolean canBeLeft() {
+		return true;
+	}
+
+	@Override
+	/**
+	 * Consequence du des selon la case, si il depasse 63, il doit donc reculer
+	 */
+	public int consequence(int diceThrow) {
+		// TODO Auto-generated method stub
+		if ((this.index + diceThrow) <= 63){
+			return (this.index + diceThrow);
+		}
+		else{
+			return (63 -(this.index + diceThrow -63));
+		}
+	}
+
+	@Override
+	/**
+	 *Retourne l'index de la case
+	 */
+	public int getIndex() {
+		return this.index;
+	}
+
+	/**
+	 *Retourne le joueur qui est en cours de jeu
+	 */
+	@Override
+	public Player getPlayer() {
+		return this.player;
+	}
+	/**
+	 * le joueur est-il occupé
+	 */
+	@Override
+	public boolean isBusy() {
+		// TODO Auto-generated method stub
+		return (this.player != null);
+	}
+
+	/**
+	 *Selectionne le joueur
+	 */
+	@Override
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
+
+
+	/**
+	 * et lui definit un Index
+	 */
+	public void setIndex(int index) {
+		this.index = index;
+	}
+
+		
+	/**
+	 * Mise en place du message pour informer l'utilisateur de l'avancement du jeu
+	 */
+	public String getMessage(){
+		return this.getPlayer().toString()+" is in cell "+this.index+", "+this.getPlayer().toString()
+		+" throws "+ this.diceGet() +", reaches cell "
+		+this.consequence(this.diceGet());	
+	}
+	
+	public int diceGet(){
+		return this.dice;
+	}
+	
+	public void  setDice(int d){
+		this.dice = d;
+	}
+}

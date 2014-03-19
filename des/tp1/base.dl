@@ -1,0 +1,12 @@
+femme(mia).
+femme(jody).
+femme(yolande).
+aime(vincent,mia).
+aime(marcellus,pierre).
+aime(marcellus,mia).
+aime(monchou,lapin).
+aime(lapin,monchou).
+
+jaloux(X,Y) :- aime(X,Z) , aime(Y,Z) , X\=Y.
+
+

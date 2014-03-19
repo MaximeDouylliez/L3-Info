@@ -1,0 +1,20 @@
+#include "qs.h"
+#include "util.h"
+
+int
+main
+()
+{
+
+  void* tab;
+  void* p;
+  p=&(comp_entier());
+  tab=malloc(TABSIZE*sizeof(int));
+  alea_tableau_int(tab,TABSIZE);
+  // lister_tableau_int(tab,TABSIZE);
+  quicksort(tab,TABSIZE,4,p);
+ // lister_tableau_int(tab,TABSIZE);
+ is_sorted_int(tab,TABSIZE);
+  return 0;
+}
+
